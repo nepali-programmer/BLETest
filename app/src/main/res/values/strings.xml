@@ -9,4 +9,11 @@
     <string name="click_to_scan">Click to scan</string>
     <string name="scanning">Scanning</string>
     <string name="stop_scan">STOP SCAN</string>
+    <string name="connect">Connect</string>
+    <string name="broadcast">Broadcast</string>
+    <string name="broadcast_status">Broadcast Status</string>
+    <string name="stop">Stop</string>
+    <string name="no_broadcast">No Broadcast</string>
+    <string name="broadcasting">Broadcasting</string>
+    <string name="random_message">Random Message</string>
 </resources>

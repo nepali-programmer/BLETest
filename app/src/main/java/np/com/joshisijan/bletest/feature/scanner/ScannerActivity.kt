@@ -2,6 +2,7 @@ package np.com.joshisijan.bletest.feature.scanner
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,15 +13,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import np.com.joshisijan.bletest.R
+import np.com.joshisijan.bletest.feature.broadcast.BroadcastActivity
 
 
 class ScannerActivity : AppCompatActivity(), ScannerStateListener {
-    private val tag = "ScannerStatus"
+    private val tag = "ScannerLog"
 
     private var viewModel: ScannerViewModel? = null
 
     private var scanStatus: TextView? = null
     private var scanButton: Button? = null
+    private var broadcastButton: Button? = null
     private var listRecyclerView: RecyclerView? = null
     private var scannerListAdapter: ScannerListAdapter? = null
 
@@ -34,11 +37,12 @@ class ScannerActivity : AppCompatActivity(), ScannerStateListener {
 
         scanStatus = findViewById(R.id.scanStatus)
         scanButton = findViewById(R.id.scanButton)
+        broadcastButton = findViewById(R.id.broadcastButton)
 
         listRecyclerView = findViewById(R.id.listRecyclerView)
         val layoutManager = LinearLayoutManager(this)
         listRecyclerView?.layoutManager = layoutManager
-        scannerListAdapter = ScannerListAdapter(mutableListOf())
+        scannerListAdapter = ScannerListAdapter(this, mutableListOf())
         listRecyclerView?.adapter = scannerListAdapter
 
         scanButton?.setOnClickListener {
@@ -47,6 +51,11 @@ class ScannerActivity : AppCompatActivity(), ScannerStateListener {
             } else {
                 viewModel?.stopScan(this)
             }
+        }
+
+        broadcastButton?.setOnClickListener {
+            val intent = Intent(this, BroadcastActivity::class.java)
+            startActivity(intent)
         }
     }
 

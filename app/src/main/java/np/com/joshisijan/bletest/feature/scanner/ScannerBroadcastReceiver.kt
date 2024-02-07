@@ -12,7 +12,6 @@ import androidx.core.app.ActivityCompat
 @Suppress("DEPRECATION")
 class ScannerBroadcastReceiver(private val scannerStateListener: ScannerStateListener?) :
     BroadcastReceiver() {
-    private val tag = "ScannerStatus"
     override fun onReceive(context: Context?, intent: Intent?) {
         if (context == null) {
             return
